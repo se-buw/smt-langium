@@ -1,0 +1,15 @@
+{
+    "projectName": "Smt",
+    "languages": [{
+        "id": "smt",
+        "grammar": "src/language/smt.langium",
+        "fileExtensions": [".smt2"],
+        "textMate": {
+            "out": "syntaxes/smt.tmLanguage.json"
+        },
+        "monarch": {
+            "out": "src/syntaxes/smt.monarch.ts"
+        }
+    }],
+    "out": "src/language/generated"
+}
