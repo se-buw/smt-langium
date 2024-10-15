@@ -66,10 +66,10 @@ terminal BValue: 'true' | 'false';
 
 
 FunctionDec infers FunctionDec:
-    PAR_OPEN symbol=SmtSymbol PAR_OPEN var+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
+    PAR_OPEN functionSymbol=SmtSymbol PAR_OPEN var+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
 
 FunctionDef infers FunctionDef:
-    symbol=SmtSymbol PAR_OPEN var+=SortedVar* PAR_CLOSE Sort Term;
+    functionSymbol=SmtSymbol PAR_OPEN sortedVar+=SortedVar* PAR_CLOSE Sort Term;
 
 DataTypeDec infers DataTypeDec:
     PAR_OPEN conttructorDec+=ConstructorDec+ PAR_CLOSE
@@ -165,17 +165,18 @@ SpecConstant returns string:
 // Lexer rules
 terminal PAR_OPEN: '(';
 terminal PAR_CLOSE: ')';
-terminal LETTER: /[a-zA-Z]/;
-terminal DIGIT: /[0-9]/;
-terminal NUMERAL: /0|[0-9][0-9]*/;
+terminal LETTER returns string: /[a-zA-Z]/;
+terminal DIGIT returns number: /[0-9]/;
+terminal NUMERAL returns number: /0|[0-9][0-9]*/;
 terminal DECIMAL: NUMERAL '.' NUMERAL;
 terminal HEXADECIMAL: /#x[0-9a-fA-F]+/;
 terminal BINARY: /#b[01]+/;
-terminal STRING: /"(WS|PRINTABLE_CHAR)*"/;
+terminal STRING returns string: /"(WS|PRINTABLE_CHAR)*"/;
 hidden terminal WS: /\s+/;
 terminal SIMPLE_SYMBOL: 
-    (LETTER | '+' '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
-    (LETTER | DIGIT | '+' '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@'); 
+    (LETTER | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
+    (LETTER | DIGIT | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')*;
+
 terminal ID: (LETTER | '+' ) (LETTER | DIGIT | '+' )* | '|' (PRINTABLE_CHAR)+ '|';
 hidden terminal SL_COMMENT: /;[^\n\r]*/;
 terminal PRINTABLE_CHAR:  /[\u0020-\u007E\u0080-\u00FF]/;
