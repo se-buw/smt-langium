@@ -8,9 +8,11 @@ Command:
    | PAR_OPEN basicCommand=BasicCommand PAR_CLOSE
    | PAR_OPEN 'check-sat-assuming' PAR_OPEN propLiteral+=PropLiteral* PAR_CLOSE PAR_CLOSE
    | CmdConstDecl
-   | PAR_OPEN 'declare-datatype' name=SmtSymbol dataTypeDec=DataTypeDec PAR_CLOSE
-   | PAR_OPEN 'declare-datatypes' PAR_OPEN sortDec+=SortDec+ PAR_CLOSE PAR_OPEN  dataTypeDec+=DataTypeDec+ PAR_CLOSE PAR_CLOSE
+   | PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE //Z3 variant
+   | CmdDecDataTypes
    | CmdFunDecl
+   | PAR_OPEN 'declare-sort' symbol=SmtSymbol number=NUMERAL* PAR_CLOSE // SMT-LIB: '*' for z3
+   | PAR_OPEN 'define-fun' FunctionDec PAR_CLOSE
    | PAR_OPEN 'define-fun-rec' FunctionDef PAR_CLOSE
    //| PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
    | PAR_OPEN 'define-sort' symbol=SmtSymbol PAR_OPEN symbol+=SmtSymbol* PAR_CLOSE Sort PAR_CLOSE
@@ -19,7 +21,7 @@ Command:
    | PAR_OPEN 'get-option' name=Keyword PAR_CLOSE
    | PAR_OPEN 'get-value' PAR_OPEN term=Term+ PAR_CLOSE PAR_CLOSE
    | PAR_OPEN 'pop' NUMERAL PAR_CLOSE
-   | PAR_OPEN 'push' NUMERAL PAR_CLOSE
+   | PAR_OPEN 'push' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
@@ -36,12 +38,19 @@ BasicCommand returns string:
 CmdConstDecl:
 	PAR_OPEN 'declare-const' symbol=SmtSymbol sorts+=Sort+ PAR_CLOSE;
 
+CmdFunDecl:
+    PAR_OPEN 'declare-fun' symbol=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
+
+CmdDecDataTypes:
+    PAR_OPEN 'declare-datatypes' PAR_OPEN (
+        sortDecZ3+=SortDecZ3* PAR_CLOSE PAR_OPEN dataTypeDecZ3+=DataTypeDecZ3+
+        | sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDec+=DataTypeDec+
+    ) PAR_CLOSE PAR_CLOSE;
+
+
 DataTypeDec:
     PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE
     | PAR_OPEN 'par' PAR_OPEN symbol+=SmtSymbol+ PAR_CLOSE PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE PAR_CLOSE;
-
-CmdFunDecl:
-    PAR_OPEN 'declare-fun' symbol=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
 
 ConstructorDec:
     PAR_OPEN symbol=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
@@ -78,12 +87,12 @@ Term:
     | QualIdentifier
     | PAR_OPEN qualId=QualIdentifier term+=Term+ PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
-    | PAR_OPEN 'forall' PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE
-    | PAR_OPEN 'exists' PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE
+    | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
     | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
     ;
-
+QuantifiedTerm:
+    PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE;
 
 MatchCase:
     PAR_OPEN pattern=Pattern term=Term PAR_CLOSE;
@@ -110,7 +119,7 @@ InfoFlag:
     | ':' 'version' | Keyword;
 
 Keyword:
-    ':' simpleSymbol=SIMPLE_SYMBOL;
+    ':' symbol=SmtSymbol;
 
 Attribute:
     keyWord=Keyword | keyWord=Keyword value=AttributeValue;
@@ -138,14 +147,33 @@ Option:
     | ':' 'random-seed' NUMERAL
     | ':' 'regular-output-channel' STRING
     | ':' 'reproducible-resource-limit' NUMERAL
+    // Z3 
+    | ':' 'smt-auto-config' BValue
+    | ':' 'smt.mbqi' BValue
+    | ':' 'smt.macro-finder' BValue
+    | ':' 'model.compact' BValue
+    | ':' 'opt.priority' SmtSymbol // Check
+    | ':' 'pp.bv-literals' BValue
     | ':' 'verbosity' NUMERAL
-    | Attribute
+    | Attribute (STRING | BValue) // Check
     ;
 
 
 
 
 
+// Z3 Related Specification
+SortDecZ3:
+    symbol+=SmtSymbol+;
+
+ConstructorDecZ3:
+    symbol=SmtSymbol selectorDec+=SelectorDecZ3*;
+
+DataTypeDecZ3:
+    PAR_OPEN constructorDecs+=ConstructorDecZ3+ PAR_CLOSE;
+
+SelectorDecZ3:
+    PAR_OPEN symbol=SmtSymbol sort+=Sort* PAR_CLOSE;
 
 
 
