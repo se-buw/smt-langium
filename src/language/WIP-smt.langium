@@ -3,6 +3,22 @@ grammar Smt
 entry Model:
     commands+=Command+;
 
+Z3Command:
+    Z3Display
+    //| Z3Simplify // FIXME: Can take any Commands name
+    | Z3Help
+    ;
+
+Z3Display:
+    PAR_OPEN 'display' term+=Term+ PAR_CLOSE;
+
+Z3Simplify :
+     PAR_OPEN 'simplify' term=Term (smplKeywords=SimplifyKeyword value=BValue)* PAR_CLOSE;
+
+Z3Help: // FIXME: Can take any Commands name
+    PAR_OPEN 'help' string=Z3Display* PAR_CLOSE;
+
+
 Command:
    CmdAssert
    | PAR_OPEN basicCommand=BasicCommand PAR_CLOSE
@@ -25,6 +41,7 @@ Command:
    | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
+   | z3Command+=Z3Command*
    ;
 
 CmdAssert:
@@ -134,6 +151,9 @@ SExpr infers SExpr:
 
 
 Option:
+    OptionTerminal | Attribute;
+
+terminal OptionTerminal:
     ':' 'diagnostic-output-channel' STRING
     | ':' 'global-declarations' BValue
     | ':' 'interactive-mode' BValue
@@ -152,10 +172,9 @@ Option:
     | ':' 'smt.mbqi' BValue
     | ':' 'smt.macro-finder' BValue
     | ':' 'model.compact' BValue
-    | ':' 'opt.priority' SmtSymbol // Check
+    | ':' 'opt.priority' SIMPLE_SYMBOL // Check
     | ':' 'pp.bv-literals' BValue
     | ':' 'verbosity' NUMERAL
-    | Attribute (STRING | BValue) // Check
     ;
 
 
@@ -196,4 +215,12 @@ terminal SIMPLE_SYMBOL:
     (LETTER | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
     (LETTER | DIGIT | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')*;
 hidden terminal SL_COMMENT: /;[^\n\r]*/;
+terminal SimplifyKeyword:
+  ':ite-extra-rules' | ':flat' | ':elim-and' | ':local-ctx' | ':local-ctx-limit' | ':blast-distinct' | ':som' | ':som-blowup' | 
+  ':hoist-mul' | ':hoist-cmul' | ':algebraic-number-evaluator' | ':mul-to-power' | ':expand-power' | 
+  ':expand-tan' | ':max-degree' | ':eq2ineq' | ':sort-sums' | ':gcd-rounding' | ':arith-lhs' | ':elim-to-real' | 
+  ':push-to-real' | ':elim-rem' | ':udiv2mul' | ':split-concat-eq' | ':bit2bool' | ':blast-eq-value' | ':elim-sign-ext' | 
+  ':hi-div0' | ':mul2concat' | ':expand-select-store' | ':sort-store' | ':max-memory' | ':max-steps' | ':push-ite-arith' | 
+  ':push-ite-bv' | ':pull-cheap-ite' | ':cache-all';
+
 terminal PRINTABLE_CHAR:  /[\u0020-\u007E\u0080-\u00FF]/;
