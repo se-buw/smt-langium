@@ -28,7 +28,7 @@ Command:
    | CmdDecDataTypes
    | CmdFunDecl
    | PAR_OPEN 'declare-sort' symbol=SmtSymbol number=NUMERAL* PAR_CLOSE // SMT-LIB: '*' for z3
-   | PAR_OPEN 'define-fun' FunctionDec PAR_CLOSE
+   | PAR_OPEN 'define-fun' FunctionDef PAR_CLOSE
    | PAR_OPEN 'define-fun-rec' FunctionDef PAR_CLOSE
    //| PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
    | PAR_OPEN 'define-sort' symbol=SmtSymbol PAR_OPEN symbol+=SmtSymbol* PAR_CLOSE Sort PAR_CLOSE
