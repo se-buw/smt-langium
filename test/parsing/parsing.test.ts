@@ -1,60 +1,45 @@
-import { beforeAll, describe, expect, test } from "vitest";
-import { EmptyFileSystem, type LangiumDocument } from "langium";
-import { expandToString as s } from "langium/generate";
-import { parseHelper } from "langium/test";
+import { describe, expect, test } from "vitest";
+import { AstNode, EmptyFileSystem, LangiumDocument } from 'langium';
 import { createSmtServices } from "../../src/language/smt-module.js";
-import { Model, isModel } from "../../src/language/generated/ast.js";
+import { Model } from "../../src/language/generated/ast.js";
+import { parseDocument } from 'langium/test';
 
-let services: ReturnType<typeof createSmtServices>;
-let parse:    ReturnType<typeof parseHelper<Model>>;
-let document: LangiumDocument<Model> | undefined;
+import * as fs from 'fs';
+import * as path from 'path';
 
-beforeAll(async () => {
-    services = createSmtServices(EmptyFileSystem);
-    parse = parseHelper<Model>(services.Smt);
+const services = createSmtServices(EmptyFileSystem).Smt;
+const resourceDir = path.resolve(__dirname, '../resources/parsed_smt');
 
-    // activate the following if your linking test requires elements from a built-in library, for example
-    // await services.shared.workspace.WorkspaceManager.initializeWorkspace([]);
+
+describe('Single test', async () => {
+  test("Single Test", async () => {
+    await assertModelNoErrors(`(declare-const a Int)
+        (declare-fun f (Int Bool) Int)
+        (assert (< a 10))
+        (assert (> (f a true) 100))
+        (check-sat)
+        (get-model)
+      `)
+  });
 });
 
-describe('Parsing tests', () => {
-
-    test('parse simple model', async () => {
-        document = await parse(`
-            person Langium
-            Hello Langium!
-        `);
-
-        // check for absensce of parser errors the classic way:
-        //  deacivated, find a much more human readable way below!
-        // expect(document.parseResult.parserErrors).toHaveLength(0);
-
-        expect(
-            // here we use a (tagged) template expression to create a human readable representation
-            //  of the AST part we are interested in and that is to be compared to our expectation;
-            // prior to the tagged template expression we check for validity of the parsed document object
-            //  by means of the reusable function 'checkDocumentValid()' to sort out (critical) typos first;
-            checkDocumentValid(document) || s`
-                Persons:
-                  ${document.parseResult.value?.persons?.map(p => p.name)?.join('\n  ')}
-                Greetings to:
-                  ${document.parseResult.value?.greetings?.map(g => g.person.$refText)?.join('\n  ')}
-            `
-        ).toBe(s`
-            Persons:
-              Langium
-            Greetings to:
-              Langium
-        `);
+describe('Parsing tests for FMP dataset', async () => {
+  const testFiles = fs.readdirSync(resourceDir).filter(file => file.endsWith('.smt2'));
+  for (const fileName of testFiles) {
+    test(`Parsing: ${fileName}`, async () => {
+      const filePath = path.join(resourceDir, fileName);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      console.log(`Parsing ${fileName}`);
+      await assertModelNoErrors(fileContent);
     });
+  }
 });
 
-function checkDocumentValid(document: LangiumDocument): string | undefined {
-    return document.parseResult.parserErrors.length && s`
-        Parser errors:
-          ${document.parseResult.parserErrors.map(e => e.message).join('\n  ')}
-    `
-        || document.parseResult.value === undefined && `ParseResult is 'undefined'.`
-        || !isModel(document.parseResult.value) && `Root AST object is a ${document.parseResult.value.$type}, expected a '${Model}'.`
-        || undefined;
+async function assertModelNoErrors(modelText: string): Promise<Model> {
+  let doc: LangiumDocument<AstNode> = await parseDocument(services, modelText)
+  const db = services.shared.workspace.DocumentBuilder
+  await db.build([doc], { validation: true });
+  const model = (doc.parseResult.value as Model);
+  expect(model.$document?.diagnostics?.length).toBe(0);
+  return model;
 }
