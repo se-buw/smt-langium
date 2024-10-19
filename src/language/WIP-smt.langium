@@ -3,26 +3,11 @@ grammar Smt
 entry Model:
     commands+=Command+;
 
-Z3Command:
-    Z3Display
-    //| Z3Simplify // FIXME: Can take any Commands name
-    | Z3Help
-    ;
-
-Z3Display:
-    PAR_OPEN 'display' term+=Term+ PAR_CLOSE;
-
-Z3Simplify :
-     PAR_OPEN 'simplify' term=Term (smplKeywords=SimplifyKeyword value=BValue)* PAR_CLOSE;
-
-Z3Help: // FIXME: Can take any Commands name
-    PAR_OPEN 'help' string=Z3Display* PAR_CLOSE;
-
 
 Command:
    CmdAssert
    | PAR_OPEN basicCommand=BasicCommand PAR_CLOSE
-   | PAR_OPEN 'check-sat-assuming' PAR_OPEN propLiteral+=PropLiteral* PAR_CLOSE PAR_CLOSE
+   | CmdCheckSat
    | CmdConstDecl
    | PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE //Z3 variant
    | CmdDecDataTypes
@@ -30,19 +15,26 @@ Command:
    | PAR_OPEN 'declare-sort' symbol=SmtSymbol number=NUMERAL* PAR_CLOSE // SMT-LIB: '*' for z3
    | PAR_OPEN 'define-fun' FunctionDef PAR_CLOSE
    | PAR_OPEN 'define-fun-rec' FunctionDef PAR_CLOSE
-   //| PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
+   | PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
    | PAR_OPEN 'define-sort' symbol=SmtSymbol PAR_OPEN symbol+=SmtSymbol* PAR_CLOSE Sort PAR_CLOSE
    | PAR_OPEN 'echo' STRING PAR_CLOSE
    | PAR_OPEN 'get-info' infoFlag=InfoFlag PAR_CLOSE
    | PAR_OPEN 'get-option' name=Keyword PAR_CLOSE
    | PAR_OPEN 'get-value' PAR_OPEN term=Term+ PAR_CLOSE PAR_CLOSE
-   | PAR_OPEN 'pop' NUMERAL PAR_CLOSE
+   | PAR_OPEN 'pop' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'push' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
-   | z3Command+=Z3Command*
+   // Z3 Commands
+   | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE
+   | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
    ;
+
+CmdCheckSat :
+    PAR_OPEN 'check-sat' PAR_CLOSE
+    | PAR_OPEN 'check-sat-assuming' PAR_OPEN propLiteral+=Term* PAR_CLOSE PAR_CLOSE //Support Z3, SMT-LIB: PropLiteral
+    ;
 
 CmdAssert:
     PAR_OPEN 'assert' term=Term PAR_CLOSE;
@@ -106,8 +98,14 @@ Term:
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
-    | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
+    //| PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
+    | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE //
     ;
+
+terminal PSEUDO_BOOL_KEYWORD: 'pbeq' | 'pbge' | 'pble';
+terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most' ;
+
+
 QuantifiedTerm:
     PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE;
 
@@ -192,7 +190,7 @@ DataTypeDecZ3:
     PAR_OPEN constructorDecs+=ConstructorDecZ3+ PAR_CLOSE;
 
 SelectorDecZ3:
-    PAR_OPEN symbol=SmtSymbol sort+=Sort* PAR_CLOSE;
+    PAR_OPEN symbol=SmtSymbol  sort+=SortDecZ3* PAR_CLOSE;
 
 
 
@@ -212,7 +210,7 @@ hidden terminal WS: /\s+/;
 
 
 terminal SIMPLE_SYMBOL: 
-    (LETTER | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
+    (LETTER | '+' | '-' | '/' | '*' | ',' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
     (LETTER | DIGIT | '+' | '-' | '/' | '*' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')*;
 hidden terminal SL_COMMENT: /;[^\n\r]*/;
 terminal SimplifyKeyword:
@@ -222,5 +220,3 @@ terminal SimplifyKeyword:
   ':push-to-real' | ':elim-rem' | ':udiv2mul' | ':split-concat-eq' | ':bit2bool' | ':blast-eq-value' | ':elim-sign-ext' | 
   ':hi-div0' | ':mul2concat' | ':expand-select-store' | ':sort-store' | ':max-memory' | ':max-steps' | ':push-ite-arith' | 
   ':push-ite-bv' | ':pull-cheap-ite' | ':cache-all';
-
-terminal PRINTABLE_CHAR:  /[\u0020-\u007E\u0080-\u00FF]/;
