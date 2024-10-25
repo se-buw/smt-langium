@@ -8,7 +8,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const services = createSmtServices(EmptyFileSystem).Smt;
-const resourceDir = path.resolve(__dirname, '../resources/parsed_smt');
+const resourceDir = path.resolve(__dirname, '../resources/smt');
 
 
 describe('Single test', async () => {
