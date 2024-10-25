@@ -176,9 +176,6 @@ terminal OptionTerminal:
     ;
 
 
-
-
-
 // Z3 Related Specification
 SortDecZ3:
     symbol+=SmtSymbol+;
@@ -189,11 +186,9 @@ ConstructorDecZ3:
 DataTypeDecZ3:
     PAR_OPEN constructorDecs+=ConstructorDecZ3+ PAR_CLOSE;
 
+
 SelectorDecZ3:
-    PAR_OPEN symbol=SmtSymbol  sort+=SortDecZ3* PAR_CLOSE;
-
-
-
+    PAR_OPEN symbol=SmtSymbol sort+=Sort* PAR_CLOSE;
 
 // Lexer rules
 terminal PAR_OPEN: '(';
