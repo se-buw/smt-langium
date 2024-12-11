@@ -5,14 +5,14 @@ entry Model:
 
 
 Command:
-   CmdAssert
+    CmdAssert
    | PAR_OPEN basicCommand=BasicCommand PAR_CLOSE
    | CmdCheckSat
    | CmdConstDecl
-   | PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE //Z3 variant
+   | CmdDecDataType
    | CmdDecDataTypes
    | CmdFunDecl
-   | PAR_OPEN 'declare-sort' symbol=SmtSymbol number=NUMERAL* PAR_CLOSE // SMT-LIB: '*' for z3
+   | CmdSortDeclZ3
    | PAR_OPEN 'define-fun' FunctionDef PAR_CLOSE
    | PAR_OPEN 'define-fun-rec' FunctionDef PAR_CLOSE
    | PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
@@ -26,38 +26,57 @@ Command:
    | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
-   // Z3 Commands
+    // Z3 Commands
    | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE
    | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
-   ;
+;
 
-CmdCheckSat :
+
+CmdCheckSat:
     PAR_OPEN 'check-sat' PAR_CLOSE
     | PAR_OPEN 'check-sat-assuming' PAR_OPEN propLiteral+=Term* PAR_CLOSE PAR_CLOSE //Support Z3, SMT-LIB: PropLiteral
-    ;
+;
 
 CmdAssert:
     PAR_OPEN 'assert' term=Term PAR_CLOSE;
 
-BasicCommand returns string: 
+BasicCommand returns string:
     'check-sat' | 'reset' | 'reset-assertions' | 'get-model' | 'exit'
     | 'get-assertions' | 'get-assignment' | 'get-proof' | 'get-unsat-assumptions'
     | 'get-unsat-core';
 
+
+// HERE
+// HERE
+// Create a Union Types for commands declaring elements with a name
+type NamedElement = CmdConstDecl | CmdFunDecl | SortedVar; // sorted var is for inner functions
+type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType;
+
+
+CmdSortDeclZ3:
+    PAR_OPEN 'declare-sort' name=SmtSymbol number=NUMERAL* PAR_CLOSE; // SMT-LIB: '*' for z3
+
 CmdConstDecl:
-	PAR_OPEN 'declare-const' symbol=SmtSymbol sorts+=Sort+ PAR_CLOSE;
+    PAR_OPEN 'declare-const' name=SmtSymbol sorts+=Sort+ PAR_CLOSE;
 
 CmdFunDecl:
-    PAR_OPEN 'declare-fun' symbol=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
+    PAR_OPEN 'declare-fun' name=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
+
+CmdDecDataType:
+    PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE; //Z3 variant
 
 CmdDecDataTypes:
-    PAR_OPEN 'declare-datatypes' PAR_OPEN (
-        sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDecs+=CommonDataTypeDec+
-    ) PAR_CLOSE PAR_CLOSE;
+    PAR_OPEN 'declare-datatypes' PAR_OPEN  (
+            sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDecs+=CommonDataTypeDec+
+        ) PAR_CLOSE PAR_CLOSE;
+// PAR_OPEN 'declare-datatypes' 
+// PAR_OPEN  sortDec+=SortDec+ PAR_CLOSE  // ignore for now!
+// PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ PAR_CLOSE 
+// PAR_CLOSE;
 
 CommonDataTypeDec:
     DataTypeDec | DataTypeDecZ3;
-
+// DataTypeDec;
 
 DataTypeDec:
     PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE
@@ -67,10 +86,12 @@ ConstructorDec:
     PAR_OPEN symbol=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
 
 SelectorDec:
-    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE;
+    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE; 
 
+
+// POTENTIALLY THIS FOR REFERENCING?
 SortDec:
-    PAR_OPEN symbol=SmtSymbol num=NUMERAL PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol num=NUMERAL PAR_CLOSE;
 
 FunctionDef:
     functionSymbol=SmtSymbol PAR_OPEN sortedVar+=SortedVar* PAR_CLOSE Sort Term;
@@ -79,31 +100,39 @@ FunctionDec:
     PAR_OPEN functionSymbol=SmtSymbol PAR_OPEN var+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
 
 SortedVar:
-    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol sort=Sort PAR_CLOSE;
 
 Sort:
-    identifier=Identifier | PAR_OPEN identifier=Identifier sorts+=Sort+ PAR_CLOSE;
+    identifier=SortIdentifier | PAR_OPEN identifier=SortIdentifier sorts+=Sort+ PAR_CLOSE;
 
 Index:
     num=NUMERAL | symbol=SmtSymbol;
 
-Identifier:
-    symbol=SmtSymbol | (PAR_OPEN '_' symbol=SmtSymbol indices+=Index+ PAR_CLOSE);
+SortIdentifier:
+    ID=[NamedSort:SmtSymbol] 
+    | (PAR_OPEN '_' ID=[NamedSort:SmtSymbol] indices+=Index+ PAR_CLOSE)
+    | PreDefinedSort;
+
+PreDefinedSort:
+    // sort= PREDEF_SORT;
+    sort='Bool' | 'Int' | 'Real';
+
 
 
 Term:
     SpecConstant
+    | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | QualIdentifier
     | PAR_OPEN qualId=QualIdentifier term+=Term+ PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
-    //| PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
+    // | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
     | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE //
-    ;
+;
 
 terminal PSEUDO_BOOL_KEYWORD: 'pbeq' | 'pbge' | 'pble';
-terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most' ;
+terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most';
 
 
 QuantifiedTerm:
@@ -119,7 +148,7 @@ VarBinding:
     PAR_OPEN symbol=SmtSymbol term=Term PAR_CLOSE;
 
 QualIdentifier:
-    id=SIMPLE_SYMBOL;
+    ID=[NamedElement:SmtSymbol];
 
 SpecConstant returns string:
     NUMERAL | DECIMAL | HEXADECIMAL | BINARY | STRING;
@@ -127,6 +156,9 @@ SpecConstant returns string:
 
 SmtSymbol returns string:
     SIMPLE_SYMBOL;
+
+Operator returns string:
+    ARITHMETIC_OPERATOR | BOOLEAN_OPERATOR;
 
 InfoFlag:
     ':' 'all-statistics' | ':' 'assertion-stack-levels' | ':' 'authors'
@@ -145,7 +177,7 @@ AttributeValue:
     | {infer AttributeValue} PAR_OPEN exprs+=SExpr* PAR_CLOSE;
 
 SExpr infers SExpr:
-    const=SpecConstant | symbol=SmtSymbol | keyWord = Keyword | PAR_OPEN exprs+=SExpr+ PAR_CLOSE;
+    const=SpecConstant | symbol=SmtSymbol | keyWord=Keyword | PAR_OPEN exprs+=SExpr+ PAR_CLOSE;
 
 
 Option:
@@ -165,7 +197,7 @@ terminal OptionTerminal:
     | ':' 'random-seed' NUMERAL
     | ':' 'regular-output-channel' STRING
     | ':' 'reproducible-resource-limit' NUMERAL
-    // Z3 
+// Z3 
     | ':' 'smt-auto-config' BValue
     | ':' 'smt.mbqi' BValue
     | ':' 'smt.macro-finder' BValue
@@ -173,7 +205,7 @@ terminal OptionTerminal:
     | ':' 'opt.priority' SIMPLE_SYMBOL // Check
     | ':' 'pp.bv-literals' BValue
     | ':' 'verbosity' NUMERAL
-    ;
+;
 
 
 // Z3 Related Specification
@@ -203,6 +235,11 @@ terminal BINARY: /#b[01]+/;
 terminal STRING returns string: /"([^"\\]|\\.|(WS|PRINTABLE_CHAR))+"/;
 hidden terminal WS: /\s+/;
 
+terminal PREDEF_SORT: 'Bool' | 'Int' | 'Real';
+// - + * / div mod abs <= < >= > to_real to_int is_int
+terminal ARITHMETIC_OPERATOR: '-' | '+' | '*' | '/' | 'div' | 'mod' | 'abs' | '<=' | '<' | '>=' | '>'; 
+// not => and or xor = // distinct ite
+terminal BOOLEAN_OPERATOR: 'not' | '=>' | 'and' | 'or' | 'xor' | '=' | 'ite' | 'distinct';
 
 terminal SIMPLE_SYMBOL: 
     (LETTER | '+' | '-' | '/' | '*' | ',' | '=' | '%' | '?' | '!' | '.' | '$' | '_' | '~' | '&' | '^' | '<' | '>' | '@')
