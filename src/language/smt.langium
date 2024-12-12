@@ -65,18 +65,20 @@ CmdFunDecl:
 CmdDecDataType:
     PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE; //Z3 variant
 
+
+// sortDec is not exposed to other commands
+// We only have access to it, if we stay inside the command, like an inner function
+// Removing 
 CmdDecDataTypes:
-    PAR_OPEN 'declare-datatypes' PAR_OPEN  (
-            sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDecs+=CommonDataTypeDec+
-        ) PAR_CLOSE PAR_CLOSE;
-// PAR_OPEN 'declare-datatypes' 
-// PAR_OPEN  sortDec+=SortDec+ PAR_CLOSE  // ignore for now!
-// PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ PAR_CLOSE 
-// PAR_CLOSE;
+    PAR_OPEN 'declare-datatypes' 
+    PAR_OPEN  (
+        sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ 
+    ) 
+    PAR_CLOSE 
+    PAR_CLOSE;
 
 CommonDataTypeDec:
     DataTypeDec | DataTypeDecZ3;
-// DataTypeDec;
 
 DataTypeDec:
     PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE
@@ -86,10 +88,8 @@ ConstructorDec:
     PAR_OPEN symbol=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
 
 SelectorDec:
-    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE; 
+    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE;
 
-
-// POTENTIALLY THIS FOR REFERENCING?
 SortDec:
     PAR_OPEN name=SmtSymbol num=NUMERAL PAR_CLOSE;
 
@@ -114,15 +114,12 @@ SortIdentifier:
     | PreDefinedSort;
 
 PreDefinedSort:
-    // sort= PREDEF_SORT;
-    sort='Bool' | 'Int' | 'Real';
-
-
+    sort=PREDEF_SORT;
 
 Term:
     SpecConstant
-    | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | QualIdentifier
+    | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | PAR_OPEN qualId=QualIdentifier term+=Term+ PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
@@ -206,7 +203,6 @@ terminal OptionTerminal:
     | ':' 'pp.bv-literals' BValue
     | ':' 'verbosity' NUMERAL
 ;
-
 
 // Z3 Related Specification
 SortDecZ3:
