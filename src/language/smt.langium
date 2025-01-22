@@ -13,10 +13,9 @@ Command:
    | CmdDecDataTypes
    | CmdFunDecl
    | CmdSortDeclZ3
-   | PAR_OPEN 'define-fun' FunctionDef PAR_CLOSE
-   | PAR_OPEN 'define-fun-rec' FunctionDef PAR_CLOSE
-   | PAR_OPEN 'define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE
-   | PAR_OPEN 'define-sort' symbol=SmtSymbol PAR_OPEN symbol+=SmtSymbol* PAR_CLOSE Sort PAR_CLOSE
+   | CmdDefSort
+   | CmdDefFun
+   | CmdDefFunsRec
    | PAR_OPEN 'echo' STRING PAR_CLOSE
    | PAR_OPEN 'get-info' infoFlag=InfoFlag PAR_CLOSE
    | PAR_OPEN 'get-option' name=Keyword PAR_CLOSE
@@ -30,7 +29,6 @@ Command:
    | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE
    | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
 ;
-
 
 CmdCheckSat:
     PAR_OPEN 'check-sat' PAR_CLOSE
@@ -49,32 +47,56 @@ BasicCommand returns string:
 // HERE
 // HERE
 // Create a Union Types for commands declaring elements with a name
-type NamedElement = CmdConstDecl | CmdFunDecl | SortedVar; // sorted var is for inner functions
-type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType;
+type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar; // sorted var is for inner functions
+type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter;
 
+
+CmdDefSort:
+    PAR_OPEN commandType='define-sort' name=SmtSymbol PAR_OPEN symbol+=SortedParameter* PAR_CLOSE Sort PAR_CLOSE;
+
+SortedParameter:
+    name=(SmtSymbol|PreDefinedSort);
 
 CmdSortDeclZ3:
-    PAR_OPEN 'declare-sort' name=SmtSymbol number=NUMERAL* PAR_CLOSE; // SMT-LIB: '*' for z3
+    PAR_OPEN commandType='declare-sort' name=SmtSymbol number=NUMERAL* PAR_CLOSE; // SMT-LIB: '*' for z3
 
 CmdConstDecl:
-    PAR_OPEN 'declare-const' name=SmtSymbol sorts+=Sort+ PAR_CLOSE;
+    PAR_OPEN commandType='declare-const' name=SmtSymbol sorts+=Sort+ PAR_CLOSE;
 
 CmdFunDecl:
-    PAR_OPEN 'declare-fun' name=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
+    PAR_OPEN commandType='declare-fun' name=SmtSymbol PAR_OPEN paramSorts+=Sort* PAR_CLOSE returnSort=Sort PAR_CLOSE;
+
+CmdDefFun:
+    PAR_OPEN commandType=DefFunCommandName FunctionDef PAR_CLOSE;
+
+// CmdDefFunRec:
+//     PAR_OPEN commandType='define-fun-rec' FunctionDef PAR_CLOSE;
+
+// terminal DEFINE_FUN_REC: 'define-fun-rec';
+// terminal DEFINE_FUN: 'define-fun';
+
+// DefFunCommandName returns string:
+//     DEFINE_FUN_REC | DEFINE_FUN;
+
+DefFunCommandName returns string:
+    'define-fun-rec'|'define-fun';
+
+
+
+CmdDefFunsRec:
+    PAR_OPEN commandType='define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE PAR_CLOSE;
+
 
 CmdDecDataType:
-    PAR_OPEN 'declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE; //Z3 variant
+    PAR_OPEN commandType='declare-datatype' name=SmtSymbol (dataTypeDec=DataTypeDec | dataTypeDec=DataTypeDecZ3) PAR_CLOSE; //Z3 variant
 
 
 // sortDec is not exposed to other commands
 // We only have access to it, if we stay inside the command, like an inner function
-// Removing 
 CmdDecDataTypes:
-    PAR_OPEN 'declare-datatypes' 
-    PAR_OPEN  (
-        sortDec+=SortDec+ PAR_CLOSE PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ 
-    ) 
-    PAR_CLOSE 
+    PAR_OPEN commandType='declare-datatypes' 
+    PAR_OPEN  sortDec+=SortDec+ PAR_CLOSE 
+    PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ PAR_CLOSE 
     PAR_CLOSE;
 
 CommonDataTypeDec:
@@ -85,19 +107,25 @@ DataTypeDec:
     | PAR_OPEN 'par' PAR_OPEN symbol+=SmtSymbol+ PAR_CLOSE PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE PAR_CLOSE;
 
 ConstructorDec:
-    PAR_OPEN symbol=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
 
 SelectorDec:
-    PAR_OPEN symbol=SmtSymbol sort=Sort PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol sort=Sort PAR_CLOSE 
+    | PAR_OPEN listKey=('tail'|'head') sort=Sort PAR_CLOSE
+;
 
 SortDec:
-    PAR_OPEN name=SmtSymbol num=NUMERAL PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol num=NUMERAL PAR_CLOSE 
+    | name=SmtSymbol;
 
 FunctionDef:
-    functionSymbol=SmtSymbol PAR_OPEN sortedVar+=SortedVar* PAR_CLOSE Sort Term;
+    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE Sort Term;
+
+FunctionDefRec:
+    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE Sort Term;
 
 FunctionDec:
-    PAR_OPEN functionSymbol=SmtSymbol PAR_OPEN var+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol PAR_OPEN vars+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
 
 SortedVar:
     PAR_OPEN name=SmtSymbol sort=Sort PAR_CLOSE;
@@ -113,19 +141,24 @@ SortIdentifier:
     | (PAR_OPEN '_' ID=[NamedSort:SmtSymbol] indices+=Index+ PAR_CLOSE)
     | PreDefinedSort;
 
+
 PreDefinedSort:
-    sort=PREDEF_SORT;
+    //sort=PREDEF_SORT;
+    ID=('Int' | 'Bool' | 'Real' | 'List');
 
 Term:
     SpecConstant
     | QualIdentifier
     | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
+    | PAR_OPEN 'if' term+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
     | PAR_OPEN qualId=QualIdentifier term+=Term+ PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
     // | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
-    | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE //
+    | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE
+    | PAR_OPEN PAR_OPEN '_' 'is' 'nil' PAR_CLOSE SmtSymbol* PAR_CLOSE // THIS IS TO REMOVE ERRORS
+    | PAR_OPEN listKey=('tail'| 'head') term+=Term+ PAR_CLOSE
 ;
 
 terminal PSEUDO_BOOL_KEYWORD: 'pbeq' | 'pbge' | 'pble';
@@ -134,6 +167,9 @@ terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most';
 
 QuantifiedTerm:
     PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE;
+
+ConditionalTerm:
+    (SpecConstant|BValue) term+=Term+;
 
 MatchCase:
     PAR_OPEN pattern=Pattern term=Term PAR_CLOSE;
@@ -214,9 +250,8 @@ ConstructorDecZ3:
 DataTypeDecZ3:
     PAR_OPEN constructorDecs+=ConstructorDecZ3+ PAR_CLOSE;
 
-
 SelectorDecZ3:
-    PAR_OPEN symbol=SmtSymbol sort+=Sort* PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol sort+=Sort* PAR_CLOSE;
 
 // Lexer rules
 terminal PAR_OPEN: '(';
@@ -231,7 +266,7 @@ terminal BINARY: /#b[01]+/;
 terminal STRING returns string: /"([^"\\]|\\.|(WS|PRINTABLE_CHAR))+"/;
 hidden terminal WS: /\s+/;
 
-terminal PREDEF_SORT: 'Bool' | 'Int' | 'Real';
+terminal PREDEF_SORT: 'Bool' | 'Int' | 'Real' | 'List';
 // - + * / div mod abs <= < >= > to_real to_int is_int
 terminal ARITHMETIC_OPERATOR: '-' | '+' | '*' | '/' | 'div' | 'mod' | 'abs' | '<=' | '<' | '>=' | '>'; 
 // not => and or xor = // distinct ite
