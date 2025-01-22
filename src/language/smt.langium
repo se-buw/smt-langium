@@ -151,7 +151,7 @@ Term:
     | QualIdentifier
     | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | PAR_OPEN 'if' term+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
-    | PAR_OPEN qualId=QualIdentifier term+=Term+ PAR_CLOSE
+    | PAR_OPEN qualId=QualIdentifier term+=Term+ boolean=BValue? PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
