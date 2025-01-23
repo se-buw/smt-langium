@@ -2,6 +2,9 @@ import { type Module, inject } from 'langium';
 import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModuleContext, type LangiumServices, type LangiumSharedServices, type PartialLangiumServices } from 'langium/lsp';
 import { SmtGeneratedModule, SmtGeneratedSharedModule } from './generated/module.js';
 import { SmtValidator, registerValidationChecks } from './smt-validator.js';
+import { registerSymbolCollector, SymbolCollection } from './smt-expression-collector.js';
+import { SmtScopeProvider } from './smt-scope-provider.js';
+import { SmtScopeComputation } from './smt-scope-computation.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -9,7 +12,10 @@ import { SmtValidator, registerValidationChecks } from './smt-validator.js';
 export type SmtAddedServices = {
     validation: {
         SmtValidator: SmtValidator
-    }
+    },
+    // utils: {
+    //     SmtSymbolCollector: SymbolCollection
+    // }
 }
 
 /**
@@ -26,6 +32,13 @@ export type SmtServices = LangiumServices & SmtAddedServices
 export const SmtModule: Module<SmtServices, PartialLangiumServices & SmtAddedServices> = {
     validation: {
         SmtValidator: () => new SmtValidator()
+    },
+    // utils: {
+    //     SmtSymbolCollector: () => new SymbolCollection()
+    // },
+    references: {
+        //ScopeProvider: (services) => new SmtScopeProvider(services),
+        ScopeComputation: (services) => new SmtScopeComputation(services),
     }
 };
 
@@ -59,6 +72,7 @@ export function createSmtServices(context: DefaultSharedModuleContext): {
     );
     shared.ServiceRegistry.register(Smt);
     registerValidationChecks(Smt);
+    // registerSymbolCollector(Smt);
     if (!context.connection) {
         // We don't run inside a language server
         // Therefore, initialize the configuration provider instantly
