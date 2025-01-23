@@ -19,7 +19,7 @@ Command:
    | PAR_OPEN 'echo' STRING PAR_CLOSE
    | PAR_OPEN 'get-info' infoFlag=InfoFlag PAR_CLOSE
    | PAR_OPEN 'get-option' name=Keyword PAR_CLOSE
-   | PAR_OPEN 'get-value' PAR_OPEN term=Term+ PAR_CLOSE PAR_CLOSE
+   | PAR_OPEN 'get-value' PAR_OPEN term+=Term+ PAR_CLOSE PAR_CLOSE
    | PAR_OPEN 'pop' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'push' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
@@ -216,7 +216,7 @@ SExpr infers SExpr:
 Option:
     OptionTerminal | Attribute;
 
-terminal OptionTerminal:
+OptionTerminal returns string:
     ':' 'diagnostic-output-channel' STRING
     | ':' 'global-declarations' BValue
     | ':' 'interactive-mode' BValue
@@ -230,9 +230,9 @@ terminal OptionTerminal:
     | ':' 'random-seed' NUMERAL
     | ':' 'regular-output-channel' STRING
     | ':' 'reproducible-resource-limit' NUMERAL
-// Z3 
+    // Z3 
     | ':' 'smt-auto-config' BValue
-    | ':' 'smt.mbqi' BValue
+    | ':smt.mbqi' BValue
     | ':' 'smt.macro-finder' BValue
     | ':' 'model.compact' BValue
     | ':' 'opt.priority' SIMPLE_SYMBOL // Check
