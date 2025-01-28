@@ -131,7 +131,9 @@ SortedVar:
     PAR_OPEN name=SmtSymbol sort=Sort PAR_CLOSE;
 
 Sort:
-    identifier=SortIdentifier | PAR_OPEN identifier=SortIdentifier sorts+=Sort+ PAR_CLOSE;
+    identifier=SortIdentifier 
+    | PAR_OPEN identifier=SortIdentifier sorts+=Sort+ PAR_CLOSE
+;
 
 Index:
     num=NUMERAL | symbol=SmtSymbol;
@@ -139,7 +141,10 @@ Index:
 SortIdentifier:
     ID=[NamedSort:SmtSymbol] 
     | (PAR_OPEN '_' ID=[NamedSort:SmtSymbol] indices+=Index+ PAR_CLOSE)
-    | PreDefinedSort;
+    | PreDefinedSort
+    | 'Array'
+;
+
 
 
 PreDefinedSort:
@@ -149,9 +154,11 @@ PreDefinedSort:
 Term:
     SpecConstant
     | QualIdentifier
+    | BValue
+    | AttributedTerm
     | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | PAR_OPEN 'if' term+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
-    | PAR_OPEN qualId=QualIdentifier term+=Term+ boolean=BValue? PAR_CLOSE
+    | PAR_OPEN qualId=QualIdentifier term+=Term+  boolean=BValue? PAR_CLOSE
     | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
     | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
@@ -166,10 +173,19 @@ terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most';
 
 
 QuantifiedTerm:
-    PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=Term PAR_CLOSE;
+    PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=(Term|PatternedTerm) PAR_CLOSE;
+
+PatternedTerm:
+    PAR_OPEN '!' bodyterm=Term patternAttribute+=PatternAttribute+  PAR_CLOSE;
+
+PatternAttribute:
+    ':pattern' PAR_OPEN term+=Term+ PAR_CLOSE;
 
 ConditionalTerm:
     (SpecConstant|BValue) term+=Term+;
+
+AttributedTerm:
+    PAR_OPEN '!' term=Term ':named' name=SmtSymbol PAR_CLOSE;
 
 MatchCase:
     PAR_OPEN pattern=Pattern term=Term PAR_CLOSE;
@@ -206,7 +222,7 @@ Attribute:
 
 AttributeValue:
     const=SpecConstant 
-    | symbol=SmtSymbol 
+    | symbol=SmtSymbol string+=STRING*
     | {infer AttributeValue} PAR_OPEN exprs+=SExpr* PAR_CLOSE;
 
 SExpr infers SExpr:

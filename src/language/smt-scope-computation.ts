@@ -1,5 +1,4 @@
 import { AstNode, GenericAstNode, DefaultScopeComputation, LangiumCoreServices, LangiumDocument, PrecomputedScopes } from "langium";
-import { SortedVar } from "./generated/ast.js";
 
 
 
@@ -34,7 +33,3 @@ export class SmtScopeComputation extends DefaultScopeComputation{
         }
     }
 }
-
-const multiplicityProperties : string [] = [
-    'sortedVars', 'vars', 'functionDec', 'construtedDecs', 'sortDec'
-];
