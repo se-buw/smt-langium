@@ -18,7 +18,7 @@ Command:
    | CmdDefFunsRec
    | PAR_OPEN 'echo' STRING PAR_CLOSE
    | PAR_OPEN 'get-info' infoFlag=InfoFlag PAR_CLOSE
-   | PAR_OPEN 'get-option' name=Keyword PAR_CLOSE
+   | PAR_OPEN 'get-option' options=(OptionKeyword|Keyword) PAR_CLOSE
    | PAR_OPEN 'get-value' PAR_OPEN term+=Term+ PAR_CLOSE PAR_CLOSE
    | PAR_OPEN 'pop' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'push' NUMERAL* PAR_CLOSE // '*' for Z3
@@ -26,7 +26,7 @@ Command:
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
     // Z3 Commands
-   | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE
+   | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE 
    | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
 ;
 
@@ -44,7 +44,6 @@ BasicCommand returns string:
     | 'get-unsat-core';
 
 
-// HERE
 // HERE
 // Create a Union Types for commands declaring elements with a name
 type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar; // sorted var is for inner functions
@@ -80,8 +79,6 @@ CmdDefFun:
 
 DefFunCommandName returns string:
     'define-fun-rec'|'define-fun';
-
-
 
 CmdDefFunsRec:
     PAR_OPEN commandType='define-funs-rec' PAR_OPEN functionDec+=FunctionDec+ PAR_CLOSE PAR_OPEN term+=Term+ PAR_CLOSE PAR_CLOSE;
@@ -144,8 +141,6 @@ SortIdentifier:
     | PreDefinedSort
     | 'Array'
 ;
-
-
 
 PreDefinedSort:
     //sort=PREDEF_SORT;
@@ -217,10 +212,14 @@ InfoFlag:
 Keyword:
     ':' symbol=SmtSymbol;
 
+
 Attribute:
-    keyWord=Keyword | keyWord=Keyword value=AttributeValue;
+    keyWord=Keyword |
+    keyWord=Keyword value=AttributeValue
+;
 
 AttributeValue:
+    BValue |
     const=SpecConstant 
     | symbol=SmtSymbol string+=STRING*
     | {infer AttributeValue} PAR_OPEN exprs+=SExpr* PAR_CLOSE;
@@ -230,30 +229,30 @@ SExpr infers SExpr:
 
 
 Option:
-    OptionTerminal | Attribute;
+    OptionKeyword | Attribute;
 
-OptionTerminal returns string:
-    ':' 'diagnostic-output-channel' STRING
-    | ':' 'global-declarations' BValue
-    | ':' 'interactive-mode' BValue
-    | ':' 'print-success' BValue
-    | ':' 'produce-assertions' BValue
-    | ':' 'produce-assignments' BValue
-    | ':' 'produce-models' BValue
-    | ':' 'produce-proofs' BValue
-    | ':' 'produce-unsat-assumptions' BValue
-    | ':' 'produce-unsat-cores' BValue
-    | ':' 'random-seed' NUMERAL
-    | ':' 'regular-output-channel' STRING
-    | ':' 'reproducible-resource-limit' NUMERAL
+OptionKeyword:
+    option=':diagnostic-output-channel' value=STRING?
+    | option=':global-declarations' value=BValue?
+    | option=':interactive-mode' value=BValue
+    | option=':print-success' value=BValue?
+    | option=':produce-assertions' value=BValue?
+    | option=':produce-assignments' value=BValue?
+    | option=':produce-models' value=BValue?
+    | option=':produce-proofs' value=BValue?
+    | option=':produce-unsat-assumptions' value=BValue?
+    | option=':produce-unsat-cores' value=BValue?
+    | option=':random-seed' value=NUMERAL?
+    | option=':regular-output-channel' value=STRING?
+    | option=':reproducible-resource-limit' value=NUMERAL
     // Z3 
-    | ':' 'smt-auto-config' BValue
-    | ':smt.mbqi' BValue
-    | ':' 'smt.macro-finder' BValue
-    | ':' 'model.compact' BValue
-    | ':' 'opt.priority' SIMPLE_SYMBOL // Check
-    | ':' 'pp.bv-literals' BValue
-    | ':' 'verbosity' NUMERAL
+    | option=':smt-auto-config' value=BValue?
+    | option=':smt.mbqi' value=BValue?
+    | option=':smt.macro-finder' value=BValue?
+    | option=':model.compact' value=BValue?
+    | option=':opt.priority' value=SIMPLE_SYMBOL? // Check
+    | option=':pp.bv-literals' value=BValue?
+    | option=':verbosity' value=NUMERAL?
 ;
 
 // Z3 Related Specification
