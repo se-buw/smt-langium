@@ -13,9 +13,6 @@ export type SmtAddedServices = {
     validation: {
         SmtValidator: SmtValidator
     },
-    // utils: {
-    //     SmtSymbolCollector: SymbolCollection
-    // }
 }
 
 /**
@@ -33,11 +30,7 @@ export const SmtModule: Module<SmtServices, PartialLangiumServices & SmtAddedSer
     validation: {
         SmtValidator: () => new SmtValidator()
     },
-    // utils: {
-    //     SmtSymbolCollector: () => new SymbolCollection()
-    // },
     references: {
-        //ScopeProvider: (services) => new SmtScopeProvider(services),
         ScopeComputation: (services) => new SmtScopeComputation(services),
     }
 };
