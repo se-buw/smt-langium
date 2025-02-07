@@ -43,8 +43,6 @@ BasicCommand returns string:
     | 'get-assertions' | 'get-assignment' | 'get-proof' | 'get-unsat-assumptions'
     | 'get-unsat-core';
 
-
-// HERE
 // Create a Union Types for commands declaring elements with a name
 type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar; // sorted var is for inner functions
 type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter;
@@ -57,7 +55,7 @@ SortedParameter:
     name=(SmtSymbol|PreDefinedSort);
 
 CmdSortDeclZ3:
-    PAR_OPEN commandType='declare-sort' name=SmtSymbol number=NUMERAL* PAR_CLOSE; // SMT-LIB: '*' for z3
+    PAR_OPEN commandType='declare-sort' name=SmtSymbol number+=NUMERAL* PAR_CLOSE; // SMT-LIB: '*' for z3
 
 CmdConstDecl:
     PAR_OPEN commandType='declare-const' name=SmtSymbol sorts+=Sort+ PAR_CLOSE;
@@ -68,14 +66,6 @@ CmdFunDecl:
 CmdDefFun:
     PAR_OPEN commandType=DefFunCommandName FunctionDef PAR_CLOSE;
 
-// CmdDefFunRec:
-//     PAR_OPEN commandType='define-fun-rec' FunctionDef PAR_CLOSE;
-
-// terminal DEFINE_FUN_REC: 'define-fun-rec';
-// terminal DEFINE_FUN: 'define-fun';
-
-// DefFunCommandName returns string:
-//     DEFINE_FUN_REC | DEFINE_FUN;
 
 DefFunCommandName returns string:
     'define-fun-rec'|'define-fun';
@@ -138,7 +128,7 @@ Index:
 SortIdentifier:
     ID=[NamedSort:SmtSymbol] 
     | (PAR_OPEN '_' ID=[NamedSort:SmtSymbol] indices+=Index+ PAR_CLOSE)
-    | PreDefinedSort
+    | sort=PreDefinedSort
     | 'Array'
 ;
 
@@ -281,7 +271,6 @@ terminal BINARY: /#b[01]+/;
 terminal STRING returns string: /"([^"\\]|\\.|(WS|PRINTABLE_CHAR))+"/;
 hidden terminal WS: /\s+/;
 
-terminal PREDEF_SORT: 'Bool' | 'Int' | 'Real' | 'List';
 // - + * / div mod abs <= < >= > to_real to_int is_int
 terminal ARITHMETIC_OPERATOR: '-' | '+' | '*' | '/' | 'div' | 'mod' | 'abs' | '<=' | '<' | '>=' | '>'; 
 // not => and or xor = // distinct ite
