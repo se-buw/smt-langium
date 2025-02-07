@@ -2,10 +2,8 @@ import { type Module, inject } from 'langium';
 import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModuleContext, type LangiumServices, type LangiumSharedServices, type PartialLangiumServices } from 'langium/lsp';
 import { SmtGeneratedModule, SmtGeneratedSharedModule } from './generated/module.js';
 import { SmtValidator, registerValidationChecks } from './smt-validator.js';
-import { registerSymbolCollector, SymbolCollection } from './smt-expression-collector.js';
-import { SmtScopeProvider } from './smt-scope-provider.js';
 import { SmtScopeComputation } from './smt-scope-computation.js';
-
+import { SmtCompletionProvider } from './smt-completion-provider.js';
 /**
  * Declaration of custom services - add your own service classes here.
  */
@@ -32,6 +30,9 @@ export const SmtModule: Module<SmtServices, PartialLangiumServices & SmtAddedSer
     },
     references: {
         ScopeComputation: (services) => new SmtScopeComputation(services),
+    },
+    lsp:{
+        CompletionProvider: (services) => new SmtCompletionProvider(services)
     }
 };
 
