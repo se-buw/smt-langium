@@ -45,7 +45,7 @@ BasicCommand returns string:
 
 // Create a Union Types for commands declaring elements with a name
 type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar; // sorted var is for inner functions
-type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter | DataTypeDecZ3;
+type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter;
 
 
 CmdDefSort:
@@ -82,7 +82,7 @@ CmdDecDataType:
 // We only have access to it, if we stay inside the command, like an inner function
 CmdDecDataTypes:
     PAR_OPEN commandType='declare-datatypes' 
-    PAR_OPEN  sortDec+=SortDec* PAR_CLOSE 
+    PAR_OPEN  sortDec+=SortDec+ PAR_CLOSE 
     PAR_OPEN dataTypeDecs+=CommonDataTypeDec+ PAR_CLOSE 
     PAR_CLOSE;
 
@@ -143,10 +143,10 @@ Term:
     | AttributedTerm
     | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
     | PAR_OPEN 'if' term+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
-    | PAR_OPEN qualId=QualIdentifier term+=Term+  boolean?=BValue? PAR_CLOSE
-    | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term+=Term PAR_CLOSE
+    | PAR_OPEN qualId=QualIdentifier term+=Term+  boolean=BValue? PAR_CLOSE
+    | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term=Term PAR_CLOSE
     | QuantifiedTerm
-    | PAR_OPEN 'match' term+=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
+    | PAR_OPEN 'match' term=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
     // | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
     | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE
     | PAR_OPEN PAR_OPEN '_' 'is' 'nil' PAR_CLOSE SmtSymbol* PAR_CLOSE // THIS IS TO REMOVE ERRORS
@@ -249,14 +249,11 @@ OptionKeyword:
 SortDecZ3:
     symbol+=SmtSymbol+;
 
-DataTypeDecZ3:
-    PAR_OPEN name=SmtSymbol constructorDecs=ConstructorDecZ3 PAR_CLOSE;
-
 ConstructorDecZ3:
-    name=ConstDecVar selector+=SelectorDecZ3* (SEPERATOR right+=ConstDecVar)*;
+    symbol=SmtSymbol selectorDec+=SelectorDecZ3*;
 
-ConstDecVar:
-    name=SmtSymbol;
+DataTypeDecZ3:
+    PAR_OPEN constructorDecs+=ConstructorDecZ3+ PAR_CLOSE;
 
 SelectorDecZ3:
     PAR_OPEN name=SmtSymbol sort+=Sort* PAR_CLOSE;
@@ -272,7 +269,6 @@ terminal DIGIT returns number: /[0-9]/;
 terminal HEXADECIMAL: /#x[0-9a-fA-F]+/;
 terminal BINARY: /#b[01]+/;
 terminal STRING returns string: /"([^"\\]|\\.|(WS|PRINTABLE_CHAR))+"/;
-terminal SEPERATOR: ',';
 hidden terminal WS: /\s+/;
 
 // - + * / div mod abs <= < >= > to_real to_int is_int
