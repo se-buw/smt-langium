@@ -7,3 +7,4 @@ out/
 src/language/generated/
 syntaxes/
 test/resources/
+.DS_Store
