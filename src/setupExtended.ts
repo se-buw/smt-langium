@@ -12,7 +12,7 @@ export const setupConfigExtended = (): UserConfig => {
             editorAppConfig: {
                 $type: 'extended',
                 languageId: 'smt',
-                code: `// SMT is running in the web!`,
+                code: `; SMT is running in the web!`,
                 useDiffEditor: false,
                 extensions: [{
                     config: {

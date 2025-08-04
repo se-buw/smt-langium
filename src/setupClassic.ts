@@ -9,7 +9,7 @@ export const setupConfigClassic = (): UserConfig => {
             editorAppConfig: {
                 $type: 'classic',
                 languageId: 'smt',
-                code: `// SMT is running in the web!`,
+                code: `; SMT is running in the web!`,
                 useDiffEditor: false,
                 languageExtensionConfig: { id: 'langium' },
                 languageDef: monarchSyntax,
