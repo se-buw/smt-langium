@@ -29,6 +29,17 @@ export class SmtScopeComputation extends DefaultScopeComputation{
                     if(Array.isArray(value)) scopes.add(container.$container, description); 
                 }
 
+                // Special handling for constructor names: expose them at the Model level
+                // so they can be referenced globally
+                if (node.$type === 'SimpleConstructor' || node.$type === 'ConstructorDec') {
+                    let current: AstNode | undefined = container;
+                    while (current && current.$type !== 'Model') {
+                        current = current.$container;
+                    }
+                    if (current && current.$type === 'Model') {
+                        scopes.add(current, description);
+                    }
+                }
             }
         }
     }

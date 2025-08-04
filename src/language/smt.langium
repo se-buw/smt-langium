@@ -22,7 +22,7 @@ Command:
    | PAR_OPEN 'get-value' PAR_OPEN term+=Term+ PAR_CLOSE PAR_CLOSE
    | PAR_OPEN 'pop' NUMERAL* PAR_CLOSE // '*' for Z3
    | PAR_OPEN 'push' NUMERAL* PAR_CLOSE // '*' for Z3
-   | PAR_OPEN 'set-info' name=Attribute PAR_CLOSE
+   | PAR_OPEN 'set-info' attribute=Attribute PAR_CLOSE
    | PAR_OPEN 'set-logic' symbol=SmtSymbol PAR_CLOSE
    | PAR_OPEN 'set-option' option=Option PAR_CLOSE
     // Z3 Commands
@@ -43,12 +43,12 @@ BasicCommand returns string:
     | 'get-assertions' | 'get-assignment' | 'get-proof' | 'get-unsat-assumptions'
     | 'get-unsat-core';
 
-type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar; // sorted var is for inner functions
+type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar | SimpleConstructor | ConstructorDec; // sorted var is for inner functions
 type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter | DataTypeDecZ3;
 
 
 CmdDefSort:
-    PAR_OPEN commandType='define-sort' name=SmtSymbol PAR_OPEN symbol+=SortedParameter* PAR_CLOSE Sort PAR_CLOSE;
+    PAR_OPEN commandType='define-sort' name=SmtSymbol PAR_OPEN parameters+=SortedParameter* PAR_CLOSE resultSort=Sort PAR_CLOSE;
 
 SortedParameter:
     name=(SmtSymbol|PreDefinedSort);
@@ -90,7 +90,11 @@ CommonDataTypeDec:
 
 DataTypeDec:
     PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE
-    | PAR_OPEN 'par' PAR_OPEN symbol+=SmtSymbol+ PAR_CLOSE PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE PAR_CLOSE;
+    | PAR_OPEN simpleConstructors+=SimpleConstructor+ PAR_CLOSE  // Simple constructor names without selectors
+    | PAR_OPEN 'par' PAR_OPEN parameters+=SmtSymbol+ PAR_CLOSE PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE PAR_CLOSE;
+
+SimpleConstructor:
+    name=SmtSymbol;
 
 ConstructorDec:
     PAR_OPEN name=SmtSymbol selectorDec+=SelectorDec* PAR_CLOSE;
@@ -105,13 +109,13 @@ SortDec:
     | name=SmtSymbol;
 
 FunctionDef:
-    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE Sort Term;
+    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE returnSort=Sort body=Term;
 
 FunctionDefRec:
-    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE Sort Term;
+    name=SmtSymbol PAR_OPEN sortedVars+=SortedVar* PAR_CLOSE returnSort=Sort body=Term;
 
 FunctionDec:
-    PAR_OPEN name=SmtSymbol PAR_OPEN vars+=SortedVar* PAR_CLOSE Sort PAR_CLOSE;
+    PAR_OPEN name=SmtSymbol PAR_OPEN vars+=SortedVar* PAR_CLOSE returnSort=Sort PAR_CLOSE;
 
 SortedVar:
     PAR_OPEN name=SmtSymbol sort=Sort PAR_CLOSE;
@@ -140,16 +144,16 @@ Term:
     | QualIdentifier
     | BValue
     | AttributedTerm
-    | PAR_OPEN Operator term+=Term+ PAR_CLOSE 
-    | PAR_OPEN 'if' term+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
-    | PAR_OPEN qualId=QualIdentifier term+=Term+  boolean=BValue? PAR_CLOSE
-    | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE term+=Term PAR_CLOSE
+    | PAR_OPEN Operator terms+=Term+ PAR_CLOSE 
+    | PAR_OPEN 'if' condition+=Term+ statement+=ConditionalTerm*  PAR_CLOSE
+    | PAR_OPEN qualId=QualIdentifier args+=Term+  boolean=BValue? PAR_CLOSE
+    | PAR_OPEN 'let' PAR_OPEN varBinding+=VarBinding+ PAR_CLOSE body+=Term PAR_CLOSE
     | QuantifiedTerm
-    | PAR_OPEN 'match' term+=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
+    | PAR_OPEN 'match' expr+=Term PAR_OPEN matchCase+=MatchCase+ PAR_CLOSE
     // | PAR_OPEN '!' term=Term attribute+=Attribute+ PAR_CLOSE
     | PAR_OPEN PAR_OPEN '_' (PSEUDO_BOOL_KEYWORD | CARDINALITY_KEYWORD)  NUMERAL* PAR_CLOSE SmtSymbol* PAR_CLOSE
     | PAR_OPEN PAR_OPEN '_' 'is' 'nil' PAR_CLOSE SmtSymbol* PAR_CLOSE // THIS IS TO REMOVE ERRORS
-    | PAR_OPEN listKey=('tail'| 'head') term+=Term+ PAR_CLOSE
+    | PAR_OPEN listKey=('tail'| 'head') operands+=Term+ PAR_CLOSE
 ;
 
 terminal PSEUDO_BOOL_KEYWORD: 'pbeq' | 'pbge' | 'pble';
@@ -157,7 +161,7 @@ terminal CARDINALITY_KEYWORD: 'at-least' | 'at-most';
 
 
 QuantifiedTerm:
-    PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE term=(Term|PatternedTerm) PAR_CLOSE;
+    PAR_OPEN ('forall' | 'exists' ) PAR_OPEN sortedVar+=SortedVar+ PAR_CLOSE innerTerm=(Term|PatternedTerm) PAR_CLOSE;
 
 PatternedTerm:
     PAR_OPEN '!' bodyterm=Term patternAttribute+=PatternAttribute+  PAR_CLOSE;
@@ -169,7 +173,7 @@ ConditionalTerm:
     (SpecConstant|BValue) term+=Term+;
 
 AttributedTerm:
-    PAR_OPEN '!' term=Term ':named' name=SmtSymbol PAR_CLOSE;
+    PAR_OPEN '!' namedTerm=Term ':named' name=SmtSymbol PAR_CLOSE;
 
 MatchCase:
     PAR_OPEN pattern=Pattern term=Term PAR_CLOSE;
@@ -246,7 +250,7 @@ OptionKeyword:
 
 // Z3 Related Specification
 SortDecZ3:
-    symbol+=SmtSymbol+;
+    symbols+=SmtSymbol+;
 
 ConstructorDecZ3:
     name=ConstDecVar selector+=SelectorDecZ3* (SEPERATOR right+=ConstDecVar)*;
