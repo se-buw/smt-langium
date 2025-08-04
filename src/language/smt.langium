@@ -1,7 +1,7 @@
 grammar Smt
 
 type NamedElement = CmdConstDecl | CmdFunDecl | FunctionDef | FunctionDec | SortedVar | SimpleConstructor | ConstructorDec | NamedAttribute;
-type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter | DataTypeDecZ3;
+type NamedSort = CmdSortDeclZ3 | SortDec | SortDecZ3 | CmdDecDataType | CmdDefSort | SortedParameter | DataTypeDecZ3 | DataTypeDec | NamedDataTypeDec;
 
 entry Model:
     commands+=Command+;
@@ -31,7 +31,7 @@ Command:
    | PAR_OPEN 'get-unsat-assumptions' PAR_CLOSE
     // Z3 Commands
    | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE 
-   | PAR_OPEN ('maximize' | 'minimize') term+=Term PAR_CLOSE
+   | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
 ;
 
 CmdCheckSat:
@@ -83,12 +83,16 @@ CmdDecDataTypes:
     PAR_CLOSE;
 
 CommonDataTypeDec:
-    DataTypeDec | DataTypeDecZ3;
+    NamedDataTypeDec | DataTypeDec | DataTypeDecZ3;
 
 DataTypeDec:
     PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE
     | PAR_OPEN simpleConstructors+=SimpleConstructor+ PAR_CLOSE  // Simple constructor names without selectors
     | PAR_OPEN 'par' PAR_OPEN parameters+=SmtSymbol+ PAR_CLOSE PAR_OPEN constructorDecs+=ConstructorDec+ PAR_CLOSE PAR_CLOSE;
+
+// For declare-datatypes with inline datatype name
+NamedDataTypeDec:
+    PAR_OPEN name=SmtSymbol simpleConstructors+=SimpleConstructor+ PAR_CLOSE;
 
 SimpleConstructor:
     name=SmtSymbol;
