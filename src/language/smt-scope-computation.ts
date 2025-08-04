@@ -40,6 +40,20 @@ export class SmtScopeComputation extends DefaultScopeComputation{
                         scopes.add(current, description);
                     }
                 }
+
+                // Special handling for named attributes: expose them at the Model level
+                // so they can be referenced globally by commands like check-sat-assuming
+                if (node.$type === 'NamedAttribute') {
+                    console.log(`Processing NamedAttribute with name: ${name}`);
+                    let current: AstNode | undefined = container;
+                    while (current && current.$type !== 'Model') {
+                        current = current.$container;
+                    }
+                    if (current && current.$type === 'Model') {
+                        console.log(`Adding NamedAttribute ${name} to Model scope`);
+                        scopes.add(current, description);
+                    }
+                }
             }
         }
     }
