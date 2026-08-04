@@ -21,25 +21,19 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@8"
-            }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
               "$ref": "#/rules@9"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@22"
+              "$ref": "#/rules@10"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@24"
+              "$ref": "#/rules@23"
             }
           },
           {
@@ -51,7 +45,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@18"
+              "$ref": "#/rules@26"
             }
           },
           {
@@ -63,7 +57,13 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@46"
+              "$ref": "#/rules@20"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/rules@47"
             }
           }
         ]
@@ -78,31 +78,25 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@7"
+              "$ref": "#/rules@8"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@21"
+              "$ref": "#/rules@22"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@51"
+              "$ref": "#/rules@52"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@13"
-            }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@5"
+              "$ref": "#/rules@14"
             }
           },
           {
@@ -114,19 +108,25 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@53"
+              "$ref": "#/rules@7"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@16"
+              "$ref": "#/rules@54"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
               "$ref": "#/rules@17"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/rules@18"
             }
           }
         ]
@@ -163,7 +163,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@3"
+              "$ref": "#/rules@4"
             },
             "arguments": []
           },
@@ -173,7 +173,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -184,7 +184,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@4"
+                    "$ref": "#/rules@5"
                   },
                   "arguments": []
                 }
@@ -192,7 +192,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -201,28 +201,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@2"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@8"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@13"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@14"
+              "$ref": "#/rules@3"
             },
             "arguments": []
           },
@@ -236,14 +215,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@7"
+              "$ref": "#/rules@14"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@5"
+              "$ref": "#/rules@15"
             },
             "arguments": []
           },
@@ -257,7 +236,28 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@12"
+              "$ref": "#/rules@8"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@6"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@11"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@13"
             },
             "arguments": []
           },
@@ -267,7 +267,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -278,14 +278,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@68"
+                  "$ref": "#/rules@69"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -297,7 +297,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -312,7 +312,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@43"
+                    "$ref": "#/rules@44"
                   },
                   "arguments": []
                 }
@@ -320,7 +320,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -332,7 +332,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -350,14 +350,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                     {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@50"
+                        "$ref": "#/rules@51"
                       },
                       "arguments": []
                     },
                     {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@45"
                       },
                       "arguments": []
                     }
@@ -367,7 +367,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -379,7 +379,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -390,7 +390,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -401,7 +401,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -410,14 +410,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -429,7 +429,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -440,7 +440,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@64"
+                  "$ref": "#/rules@65"
                 },
                 "arguments": [],
                 "cardinality": "*"
@@ -448,7 +448,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -460,7 +460,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -471,7 +471,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@64"
+                  "$ref": "#/rules@65"
                 },
                 "arguments": [],
                 "cardinality": "*"
@@ -479,7 +479,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -491,7 +491,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -506,7 +506,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@45"
+                    "$ref": "#/rules@46"
                   },
                   "arguments": []
                 }
@@ -514,7 +514,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -526,7 +526,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -541,7 +541,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -549,7 +549,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -561,7 +561,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -576,7 +576,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@49"
+                    "$ref": "#/rules@50"
                   },
                   "arguments": []
                 }
@@ -584,7 +584,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -596,7 +596,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -611,7 +611,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -623,7 +623,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -631,7 +631,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -643,7 +643,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -654,7 +654,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -666,7 +666,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -681,7 +681,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -690,7 +690,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -702,7 +702,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -726,7 +726,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -734,11 +734,69 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
             ]
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@2"
+            },
+            "arguments": []
+          }
+        ]
+      },
+      "entry": false,
+      "fragment": false,
+      "parameters": []
+    },
+    {
+      "$type": "ParserRule",
+      "name": "UnknownCommand",
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@60"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "Assignment",
+            "feature": "name",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@40"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Assignment",
+            "feature": "elements",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@49"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@61"
+            },
+            "arguments": []
           }
         ]
       },
@@ -758,7 +816,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -769,7 +827,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -781,7 +839,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -792,7 +850,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -808,7 +866,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@39"
+                      "$ref": "#/rules@40"
                     },
                     "arguments": []
                   },
@@ -820,14 +878,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -848,7 +906,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -863,7 +921,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             }
@@ -871,7 +929,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -943,7 +1001,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -963,7 +1021,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -971,7 +1029,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -982,7 +1040,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@6"
+                "$ref": "#/rules@7"
               },
               "arguments": []
             },
@@ -991,7 +1049,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
@@ -1002,7 +1060,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -1010,7 +1068,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1033,14 +1091,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             },
             {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@29"
+                "$ref": "#/rules@30"
               },
               "arguments": []
             }
@@ -1060,7 +1118,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1080,7 +1138,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1092,7 +1150,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@64"
+                "$ref": "#/rules@65"
               },
               "arguments": []
             },
@@ -1101,7 +1159,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1120,7 +1178,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1140,7 +1198,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1152,7 +1210,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             },
@@ -1161,7 +1219,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1180,7 +1238,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1200,7 +1258,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1208,7 +1266,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1219,7 +1277,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             },
@@ -1228,7 +1286,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
@@ -1239,7 +1297,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -1247,7 +1305,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1266,7 +1324,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1277,7 +1335,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@11"
+                "$ref": "#/rules@12"
               },
               "arguments": []
             }
@@ -1285,14 +1343,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@22"
+              "$ref": "#/rules@23"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1332,7 +1390,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1348,7 +1406,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1359,7 +1417,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@24"
+                "$ref": "#/rules@25"
               },
               "arguments": []
             },
@@ -1368,14 +1426,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1386,7 +1444,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             },
@@ -1395,14 +1453,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1421,7 +1479,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1441,7 +1499,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1456,7 +1514,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@16"
+                    "$ref": "#/rules@17"
                   },
                   "arguments": []
                 }
@@ -1468,7 +1526,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@53"
+                    "$ref": "#/rules@54"
                   },
                   "arguments": []
                 }
@@ -1478,7 +1536,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1497,7 +1555,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1513,7 +1571,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1524,7 +1582,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@21"
+                "$ref": "#/rules@22"
               },
               "arguments": []
             },
@@ -1533,14 +1591,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1551,7 +1609,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@15"
+                "$ref": "#/rules@16"
               },
               "arguments": []
             },
@@ -1560,14 +1618,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1586,6 +1644,13 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@18"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@17"
             },
             "arguments": []
@@ -1593,14 +1658,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@16"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@53"
+              "$ref": "#/rules@54"
             },
             "arguments": []
           }
@@ -1622,7 +1680,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1633,7 +1691,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@19"
+                    "$ref": "#/rules@20"
                   },
                   "arguments": []
                 },
@@ -1642,7 +1700,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -1654,7 +1712,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1665,7 +1723,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@18"
+                    "$ref": "#/rules@19"
                   },
                   "arguments": []
                 },
@@ -1674,7 +1732,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -1686,7 +1744,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1697,7 +1755,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1708,7 +1766,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 },
@@ -1717,14 +1775,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1735,7 +1793,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@19"
+                    "$ref": "#/rules@20"
                   },
                   "arguments": []
                 },
@@ -1744,14 +1802,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -1772,7 +1830,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1783,7 +1841,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1795,7 +1853,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@18"
+                "$ref": "#/rules@19"
               },
               "arguments": []
             },
@@ -1804,7 +1862,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1824,7 +1882,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@39"
+            "$ref": "#/rules@40"
           },
           "arguments": []
         }
@@ -1842,7 +1900,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -1853,7 +1911,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -1865,7 +1923,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@20"
+                "$ref": "#/rules@21"
               },
               "arguments": []
             },
@@ -1874,7 +1932,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -1896,7 +1954,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1907,7 +1965,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -1919,7 +1977,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@26"
+                    "$ref": "#/rules@27"
                   },
                   "arguments": []
                 }
@@ -1927,7 +1985,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -1939,7 +1997,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -1968,7 +2026,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@26"
+                    "$ref": "#/rules@27"
                   },
                   "arguments": []
                 }
@@ -1976,7 +2034,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2000,7 +2058,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2011,7 +2069,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -2023,7 +2081,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -2031,7 +2089,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2044,7 +2102,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -2068,30 +2126,10 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@59"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "Assignment",
-            "feature": "sortedVars",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@25"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
           },
           {
             "$type": "RuleCall",
@@ -2102,12 +2140,32 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           },
           {
             "$type": "Assignment",
+            "feature": "sortedVars",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@26"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@61"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "Assignment",
             "feature": "returnSort",
             "operator": "=",
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -2119,7 +2177,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             }
@@ -2143,30 +2201,10 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@59"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "Assignment",
-            "feature": "sortedVars",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@25"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
           },
           {
             "$type": "RuleCall",
@@ -2177,12 +2215,32 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           },
           {
             "$type": "Assignment",
+            "feature": "sortedVars",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@26"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@61"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "Assignment",
             "feature": "returnSort",
             "operator": "=",
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -2194,7 +2252,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             }
@@ -2214,7 +2272,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -2225,7 +2283,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -2233,7 +2291,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -2244,7 +2302,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@25"
+                "$ref": "#/rules@26"
               },
               "arguments": []
             },
@@ -2253,7 +2311,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
@@ -2264,7 +2322,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -2272,7 +2330,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -2291,7 +2349,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -2302,7 +2360,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -2314,7 +2372,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             }
@@ -2322,7 +2380,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -2345,7 +2403,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@28"
+                "$ref": "#/rules@29"
               },
               "arguments": []
             }
@@ -2356,7 +2414,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2367,7 +2425,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@28"
+                    "$ref": "#/rules@29"
                   },
                   "arguments": []
                 }
@@ -2379,7 +2437,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@26"
+                    "$ref": "#/rules@27"
                   },
                   "arguments": []
                 },
@@ -2388,7 +2446,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2413,7 +2471,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@64"
+                "$ref": "#/rules@65"
               },
               "arguments": []
             }
@@ -2425,7 +2483,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -2454,7 +2512,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@39"
+                  "$ref": "#/rules@40"
                 },
                 "arguments": []
               },
@@ -2468,7 +2526,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2488,7 +2546,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@39"
+                      "$ref": "#/rules@40"
                     },
                     "arguments": []
                   },
@@ -2503,7 +2561,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@27"
+                    "$ref": "#/rules@28"
                   },
                   "arguments": []
                 },
@@ -2512,7 +2570,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2525,7 +2583,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@29"
+                "$ref": "#/rules@30"
               },
               "arguments": []
             }
@@ -2540,7 +2598,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2559,7 +2617,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -2567,7 +2625,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2579,7 +2637,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2594,7 +2652,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -2606,7 +2664,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@27"
+                    "$ref": "#/rules@28"
                   },
                   "arguments": []
                 },
@@ -2615,7 +2673,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2681,6 +2739,13 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@39"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@38"
             },
             "arguments": []
@@ -2688,14 +2753,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@37"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@61"
+              "$ref": "#/rules@62"
             },
             "arguments": []
           },
@@ -2705,14 +2763,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@40"
+                  "$ref": "#/rules@41"
                 },
                 "arguments": []
               },
@@ -2723,7 +2781,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -2732,7 +2790,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2744,7 +2802,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2759,7 +2817,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -2772,7 +2830,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@34"
+                    "$ref": "#/rules@35"
                   },
                   "arguments": []
                 },
@@ -2781,7 +2839,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2793,7 +2851,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2804,7 +2862,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@38"
                   },
                   "arguments": []
                 }
@@ -2816,7 +2874,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -2829,7 +2887,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -2838,7 +2896,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2850,7 +2908,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2861,7 +2919,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2872,7 +2930,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@37"
                   },
                   "arguments": []
                 },
@@ -2881,7 +2939,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
@@ -2892,7 +2950,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -2900,7 +2958,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2909,7 +2967,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@31"
+              "$ref": "#/rules@32"
             },
             "arguments": []
           },
@@ -2919,7 +2977,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2934,7 +2992,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -2946,7 +3004,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@45"
+                    "$ref": "#/rules@46"
                   },
                   "arguments": []
                 },
@@ -2955,7 +3013,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -2967,7 +3025,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -2982,7 +3040,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -2994,7 +3052,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@26"
+                    "$ref": "#/rules@27"
                   },
                   "arguments": []
                 }
@@ -3002,7 +3060,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3014,14 +3072,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3035,14 +3093,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                   {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@56"
+                      "$ref": "#/rules@57"
                     },
                     "arguments": []
                   },
                   {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@57"
+                      "$ref": "#/rules@58"
                     },
                     "arguments": []
                   }
@@ -3051,7 +3109,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@64"
+                  "$ref": "#/rules@65"
                 },
                 "arguments": [],
                 "cardinality": "*"
@@ -3059,14 +3117,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@39"
+                  "$ref": "#/rules@40"
                 },
                 "arguments": [],
                 "cardinality": "*"
@@ -3074,7 +3132,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3086,14 +3144,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3112,14 +3170,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@39"
+                  "$ref": "#/rules@40"
                 },
                 "arguments": [],
                 "cardinality": "*"
@@ -3127,7 +3185,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3139,7 +3197,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3168,7 +3226,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
@@ -3177,7 +3235,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3189,7 +3247,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3204,7 +3262,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -3216,7 +3274,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -3224,7 +3282,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3236,7 +3294,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3251,7 +3309,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -3263,7 +3321,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -3275,7 +3333,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 }
@@ -3283,7 +3341,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3304,7 +3362,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -3324,7 +3382,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -3335,7 +3393,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@25"
+                "$ref": "#/rules@26"
               },
               "arguments": []
             },
@@ -3344,7 +3402,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
@@ -3358,14 +3416,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@30"
+                    "$ref": "#/rules@31"
                   },
                   "arguments": []
                 },
                 {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@32"
+                    "$ref": "#/rules@33"
                   },
                   "arguments": []
                 }
@@ -3375,7 +3433,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -3394,7 +3452,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -3409,7 +3467,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             }
@@ -3421,7 +3479,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@33"
+                "$ref": "#/rules@34"
               },
               "arguments": []
             },
@@ -3430,7 +3488,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -3453,7 +3511,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -3464,7 +3522,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             },
@@ -3473,7 +3531,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -3495,14 +3553,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@38"
+                  "$ref": "#/rules@39"
                 },
                 "arguments": []
               },
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@61"
+                  "$ref": "#/rules@62"
                 },
                 "arguments": []
               }
@@ -3515,7 +3573,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             },
@@ -3540,7 +3598,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -3551,7 +3609,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -3562,7 +3620,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -3574,7 +3632,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 },
@@ -3583,7 +3641,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -3604,7 +3662,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -3615,7 +3673,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -3627,7 +3685,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@30"
+                "$ref": "#/rules@31"
               },
               "arguments": []
             }
@@ -3635,7 +3693,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -3660,7 +3718,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@39"
+              "$ref": "#/rules@40"
             },
             "arguments": []
           },
@@ -3682,21 +3740,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@65"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@64"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@63"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@66"
             },
             "arguments": []
           },
@@ -3717,7 +3768,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@58"
+              "$ref": "#/rules@69"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@59"
             },
             "arguments": []
           }
@@ -3734,7 +3792,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
       "definition": {
         "$type": "RuleCall",
         "rule": {
-          "$ref": "#/rules@73"
+          "$ref": "#/rules@74"
         },
         "arguments": []
       },
@@ -3752,13 +3810,6 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@71"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@72"
             },
             "arguments": []
@@ -3766,7 +3817,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@41"
+              "$ref": "#/rules@73"
             },
             "arguments": []
           },
@@ -3774,6 +3825,13 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@42"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@43"
             },
             "arguments": []
           },
@@ -4123,7 +4181,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@44"
+              "$ref": "#/rules@45"
             },
             "arguments": []
           }
@@ -4150,7 +4208,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -4170,7 +4228,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@46"
+              "$ref": "#/rules@47"
             },
             "arguments": []
           },
@@ -4181,7 +4239,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@44"
+                "$ref": "#/rules@45"
               },
               "arguments": []
             }
@@ -4196,7 +4254,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@45"
                   },
                   "arguments": []
                 }
@@ -4208,7 +4266,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@47"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -4233,7 +4291,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@47"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -4258,7 +4316,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@47"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -4283,7 +4341,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@47"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -4391,7 +4449,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -4411,7 +4469,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@61"
+              "$ref": "#/rules@62"
             },
             "arguments": []
           },
@@ -4422,7 +4480,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@38"
+                "$ref": "#/rules@39"
               },
               "arguments": []
             }
@@ -4437,7 +4495,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -4449,7 +4507,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@69"
                   },
                   "arguments": []
                 },
@@ -4470,7 +4528,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -4481,7 +4539,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 },
@@ -4490,7 +4548,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -4519,7 +4577,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@38"
+                "$ref": "#/rules@39"
               },
               "arguments": []
             }
@@ -4531,7 +4589,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -4543,7 +4601,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@44"
+                "$ref": "#/rules@45"
               },
               "arguments": []
             }
@@ -4554,7 +4612,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@59"
+                  "$ref": "#/rules@60"
                 },
                 "arguments": []
               },
@@ -4565,7 +4623,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 },
@@ -4574,7 +4632,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@61"
                 },
                 "arguments": []
               }
@@ -4595,14 +4653,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@50"
+              "$ref": "#/rules@51"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@45"
+              "$ref": "#/rules@46"
             },
             "arguments": []
           }
@@ -4637,7 +4695,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@69"
                   },
                   "arguments": []
                 },
@@ -4664,7 +4722,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4691,7 +4749,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -4717,7 +4775,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4744,7 +4802,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4771,7 +4829,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4798,7 +4856,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4825,7 +4883,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4852,7 +4910,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4879,7 +4937,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -4906,7 +4964,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 },
@@ -4933,7 +4991,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@69"
                   },
                   "arguments": []
                 },
@@ -4960,7 +5018,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -4986,7 +5044,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -5013,7 +5071,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -5040,7 +5098,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -5067,7 +5125,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -5094,7 +5152,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@73"
+                    "$ref": "#/rules@74"
                   },
                   "arguments": []
                 },
@@ -5121,7 +5179,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 },
@@ -5148,7 +5206,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@64"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 },
@@ -5172,7 +5230,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@39"
+            "$ref": "#/rules@40"
           },
           "arguments": []
         },
@@ -5195,7 +5253,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@54"
+                "$ref": "#/rules@55"
               },
               "arguments": []
             }
@@ -5207,7 +5265,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@55"
+                "$ref": "#/rules@56"
               },
               "arguments": []
             },
@@ -5219,7 +5277,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@69"
+                  "$ref": "#/rules@70"
                 },
                 "arguments": []
               },
@@ -5230,7 +5288,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@54"
+                    "$ref": "#/rules@55"
                   },
                   "arguments": []
                 }
@@ -5253,7 +5311,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -5264,7 +5322,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -5276,7 +5334,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@52"
+                "$ref": "#/rules@53"
               },
               "arguments": []
             }
@@ -5284,7 +5342,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -5304,7 +5362,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@39"
+            "$ref": "#/rules@40"
           },
           "arguments": []
         }
@@ -5322,7 +5380,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           },
@@ -5333,7 +5391,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@39"
+                "$ref": "#/rules@40"
               },
               "arguments": []
             }
@@ -5345,7 +5403,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@26"
+                "$ref": "#/rules@27"
               },
               "arguments": []
             },
@@ -5354,7 +5412,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           }
@@ -5536,7 +5594,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@64"
+              "$ref": "#/rules@65"
             },
             "parenthesized": false
           },
@@ -5551,7 +5609,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@64"
+              "$ref": "#/rules@65"
             },
             "parenthesized": false
           }
@@ -5954,7 +6012,7 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                                                                                   {
                                                                                     "$type": "TerminalRuleCall",
                                                                                     "rule": {
-                                                                                      "$ref": "#/rules@62"
+                                                                                      "$ref": "#/rules@63"
                                                                                     },
                                                                                     "parenthesized": false
                                                                                   },
@@ -6213,14 +6271,14 @@ export const SmtGrammar = (): Grammar => loadedSmtGrammar ?? (loadedSmtGrammar =
                                                                                   {
                                                                                     "$type": "TerminalRuleCall",
                                                                                     "rule": {
-                                                                                      "$ref": "#/rules@62"
+                                                                                      "$ref": "#/rules@63"
                                                                                     },
                                                                                     "parenthesized": false
                                                                                   },
                                                                                   {
                                                                                     "$type": "TerminalRuleCall",
                                                                                     "rule": {
-                                                                                      "$ref": "#/rules@65"
+                                                                                      "$ref": "#/rules@66"
                                                                                     },
                                                                                     "parenthesized": false
                                                                                   }

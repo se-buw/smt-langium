@@ -32,7 +32,11 @@ Command:
     // Z3 Commands
    | PAR_OPEN 'eval' term+=Term+ PAR_CLOSE 
    | PAR_OPEN ('maximize' | 'minimize') term=Term PAR_CLOSE
+   | UnknownCommand
 ;
+
+UnknownCommand:
+    PAR_OPEN name=SmtSymbol elements+=SExpr* PAR_CLOSE;
 
 CmdCheckSat:
     PAR_OPEN 'check-sat' PAR_CLOSE

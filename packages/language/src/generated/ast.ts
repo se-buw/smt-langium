@@ -472,7 +472,7 @@ export function isCmdSortDeclZ3(item: unknown): item is CmdSortDeclZ3 {
 }
 
 export interface Command extends langium.AstNode {
-    readonly $type: 'CmdAssert' | 'CmdCheckSat' | 'CmdConstDecl' | 'CmdDecDataType' | 'CmdDecDataTypes' | 'CmdDefFun' | 'CmdDefFunsRec' | 'CmdDefSort' | 'CmdFunDecl' | 'CmdSortDeclZ3' | 'Command' | 'FunctionDef';
+    readonly $type: 'CmdAssert' | 'CmdCheckSat' | 'CmdConstDecl' | 'CmdDecDataType' | 'CmdDecDataTypes' | 'CmdDefFun' | 'CmdDefFunsRec' | 'CmdDefSort' | 'CmdFunDecl' | 'CmdSortDeclZ3' | 'Command' | 'FunctionDef' | 'UnknownCommand';
     arity?: number;
     attribute?: Attribute;
     basicCommand?: BasicCommand;
@@ -992,7 +992,7 @@ export function isSelectorDecZ3(item: unknown): item is SelectorDecZ3 {
 }
 
 export interface SExpr extends langium.AstNode {
-    readonly $container: AttributeValue | SExpr;
+    readonly $container: AttributeValue | SExpr | UnknownCommand;
     readonly $type: 'SExpr';
     const?: SpecConstant;
     exprs: Array<SExpr>;
@@ -1189,6 +1189,30 @@ export function isTerm(item: unknown): item is Term {
     return reflection.isInstance(item, Term.$type);
 }
 
+export interface UnknownCommand extends Command {
+    readonly $type: 'UnknownCommand';
+    elements: Array<SExpr>;
+    name: SmtSymbol;
+}
+
+export const UnknownCommand = {
+    $type: 'UnknownCommand',
+    arity: 'arity',
+    attribute: 'attribute',
+    basicCommand: 'basicCommand',
+    elements: 'elements',
+    infoFlag: 'infoFlag',
+    name: 'name',
+    option: 'option',
+    options: 'options',
+    symbol: 'symbol',
+    term: 'term'
+} as const;
+
+export function isUnknownCommand(item: unknown): item is UnknownCommand {
+    return reflection.isInstance(item, UnknownCommand.$type);
+}
+
 export interface VarBinding extends langium.AstNode {
     readonly $container: Term;
     readonly $type: 'VarBinding';
@@ -1257,6 +1281,7 @@ export type SmtAstType = {
     SortedParameter: SortedParameter
     SortedVar: SortedVar
     Term: Term
+    UnknownCommand: UnknownCommand
     VarBinding: VarBinding
 }
 
@@ -2361,6 +2386,43 @@ export class SmtAstReflection extends langium.AbstractAstReflection {
                 }
             },
             superTypes: []
+        },
+        UnknownCommand: {
+            name: UnknownCommand.$type,
+            properties: {
+                arity: {
+                    name: UnknownCommand.arity
+                },
+                attribute: {
+                    name: UnknownCommand.attribute
+                },
+                basicCommand: {
+                    name: UnknownCommand.basicCommand
+                },
+                elements: {
+                    name: UnknownCommand.elements,
+                    defaultValue: []
+                },
+                infoFlag: {
+                    name: UnknownCommand.infoFlag
+                },
+                name: {
+                    name: UnknownCommand.name
+                },
+                option: {
+                    name: UnknownCommand.option
+                },
+                options: {
+                    name: UnknownCommand.options
+                },
+                symbol: {
+                    name: UnknownCommand.symbol
+                },
+                term: {
+                    name: UnknownCommand.term
+                }
+            },
+            superTypes: [Command.$type]
         },
         VarBinding: {
             name: VarBinding.$type,
